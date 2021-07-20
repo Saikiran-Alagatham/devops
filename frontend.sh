@@ -8,6 +8,7 @@ status_check $?
 
 echo  "Enabling  Nginx .... "
 status=$( systemctl enable nginx &>>$log)
+echo $status
 status_check status
 
 echo  "Starting Nginx .... "

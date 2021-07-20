@@ -12,7 +12,7 @@ log=/tmp/roboshop.log
 rm -f $log
 
 status_check(){
-  if [ $! -eq 0 ]; then
+  if [ $1 -eq 0 ]; then
     echo "Done"
   else
     echo "Error"

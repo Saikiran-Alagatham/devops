@@ -2,14 +2,17 @@
 
 source common.sh
 
+
 echo  "Installing Nginx .... "
 
-status=$( yum install nginx -y )
+status=$( yum install nginx -y &>> $log)
 
 echo  "Enabling  Nginx .... "
 
-status=$( systemctl enable nginx )
+status=$( systemctl enable nginx &>> $log)
 
 echo  "Starting Nginx .... "
 
-status=$( systemctl start nginx )
+status=$( systemctl start nginx &>> $log )
+
+

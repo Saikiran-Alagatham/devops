@@ -3,8 +3,8 @@
 source common.sh
 
 echo  "Installing Nginx .... "
-status=$( yum install nginx -y &>>$log)
-status_check status
+yum install nginx -y &>>$log
+status_check $?
 
 echo  "Enabling  Nginx .... "
 status=$( systemctl enable nginx &>>$log)

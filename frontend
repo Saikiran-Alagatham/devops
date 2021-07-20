@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-echo  "Installing front end\n"
+source common.sh
 
-# yum install nginx -y
-# systemctl enable nginx
-# systemctl start nginx
+echo  "Installing Nginx .... "
+
+status=$( yum install nginx -y )
+
+echo  "Enabling  Nginx .... "
+
+status=$( systemctl enable nginx )
+
+echo  "Starting Nginx .... "
+
+status=$( systemctl start nginx )

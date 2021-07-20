@@ -4,8 +4,6 @@
 user_check=$( id -u )
 if [ $user_check -ne 0 ]; then
   echo " Run as root user"
-  else
-  exit 2
 fi
 
 

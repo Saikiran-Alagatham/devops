@@ -24,7 +24,7 @@ status_check $?
 
 printf "Update Roboshop Config"
 sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/'  -e '/cart/ s/localhost/cart.roboshop.internal/' -e '/shipping/ s/localhost/shipping.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
-STAT_CHECK $?
+status_check $?
 
 printf  "Enabling  Nginx"
 systemctl enable nginx &>>$log

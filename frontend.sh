@@ -2,7 +2,7 @@
 
 source common.sh
 
-printf  "Installing Nginx .... "
+printf  "Installing Nginx"
 yum install nginx -y &>>$log
 status_check $?
 
@@ -10,23 +10,23 @@ printf "Downloading the frontend content"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>$log
 status_check $?
 
-printf "Removing default content fro Nginx"
+printf "Removing default content from Nginx"
 cd /usr/share/nginx/html &>>$log && rm -rf * &>>$log
 status_check $?
 
-printf " Extracting the content "
+printf "Extracting the content"
 unzip /tmp/frontend.zip &>>$log && mv frontend-main/* . &>>$log && mv static/* . &>>$log && rm -rf frontend-master static &>>$log
 status_check $?
 
-printf " Updating Roboshop Config by moving it to Nginx default d filr"
+printf "Updating Roboshop Config by moving it to Nginx default d file"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$log
 status_check $?
 
-printf  "Enabling  Nginx .... "
+printf  "Enabling  Nginx"
 systemctl enable nginx &>>$log
 status_check $?
 
-printf  "Starting Nginx .... "
+printf  "Starting Nginx"
 systemctl start nginx &>>$log
 status_check $?
 

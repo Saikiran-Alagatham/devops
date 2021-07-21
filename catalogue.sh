@@ -9,7 +9,7 @@ status_check $?
 
 printf  "Adding roboshop daemon user "
 id roboshop &>>$log
-if [ $? -ne 0 ] ; then
+if [ $? -ne 0 ]; then
   useradd roboshop &>>$log
 fi
 status_check $?

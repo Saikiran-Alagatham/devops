@@ -12,13 +12,15 @@ status_check $?
 
 printf "Removing default content fro Nginx"
 cd /usr/share/nginx/html &>>$log && rm -rf * &>>$log
+status_check $?
 
 printf " Extracting the content "
 unzip /tmp/frontend.zip &>>$log && mv frontend-main/* . &>>$log && mv static/* . &>>$log && rm -rf frontend-master static &>>$log
+status_check $?
 
 printf " Updating Roboshop Config by moving it to Nginx default d filr"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$log
-
+status_check $?
 
 printf  "Enabling  Nginx .... "
 systemctl enable nginx &>>$log

@@ -9,17 +9,17 @@ status_check $?
 
 printf  "Adding roboshop daemon user "
 id roboshop &>>$log
-if [ $? -n 0 ] ; then
+if [ $? -ne 0 ] ; then
   useradd roboshop &>>$log
 fi
 status_check $?
 
 printf "Downloading the Code"
-curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>$log
 status_check $?
 
 printf " Extracting downloaded Code"
-cd /home/roboshop && unzip /tmp/catalogue.zip && rm -rf catalogue && mv catalogue-main catalogue &>>$log
+cd /home/roboshop && unzip /tmp/catalogue.zip &>>$log && rm -rf catalogue &>>$log && mv catalogue-main catalogue &>>$log
 status_check $?
 
 printf "Installing NodeJs dependencies"

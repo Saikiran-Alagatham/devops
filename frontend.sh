@@ -23,8 +23,8 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$log
 status_check $?
 
 printf "Update Roboshop Config"
-sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' /etc/nginx/default.d/roboshop.conf&>>$log
-status_check $?
+sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/'  -e '/cart/ s/localhost/cart.roboshop.internal/' -e '/shipping/ s/localhost/shipping.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
+STAT_CHECK $?
 
 printf  "Enabling  Nginx"
 systemctl enable nginx &>>$log

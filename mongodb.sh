@@ -16,7 +16,7 @@ yum install -y mongodb-org &>>$log
 status_check $?
 
 printf "Updating the Ip address, so that MongoDB will listen to all"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>$log
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 status_check $?
 
 

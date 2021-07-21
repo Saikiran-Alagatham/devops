@@ -13,8 +13,8 @@ rm -f $log
 
 status_check(){
   if [ $1 -eq 0 ]; then
-    echo -n -e "\e[32mDone\e[0m"
+    echo -n -e "\e[32mDone\e[0m \n"
   else
-    echo -n -e "\e[32mError had encountered check log file: $log for more details\e[0m"
+    echo -n -e "\e[32mError had encountered check log file: $log for more details\e[0m \n"
   fi
 }

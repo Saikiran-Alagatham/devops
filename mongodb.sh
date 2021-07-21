@@ -12,17 +12,27 @@ gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mong
 status_check $?
 
 printf  "Installing MongoDB"
-yum install -y mongodb-org
+yum install -y mongodb-org &>>$log
+status_check $?
+
+printf "Updating the Ip address, so that MongoDB will listen to all"
+sed -i -e 's/127.0.0.1/0.0.0.0' /etc/mongod.conf &>>$log
 status_check $?
 
 
 
-
-
-printf  "Enabling  Nginx"
+printf  "Enabling  MongoDB"
 systemctl enable mongod &>>$log
 status_check $?
 
-printf  "Starting Nginx"
+printf  "Starting MongoDB"
 systemctl start mongod &>>$log
+status_check $?
+
+printf "Downloading the schema into MongoDB"
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$log
+status_check $?
+
+printf "Loading the schema into MongoDB"
+cd /tmp && unzip -o mongodb.zip && cd mongodb-main && mongo < catalogue.js && mongo < users.js &>>$log
 status_check $?

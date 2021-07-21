@@ -3,7 +3,7 @@
 # First Check who is running the commands
 user_check=$( id -u )
 if [ $user_check -ne 0 ]; then
-  echo "\e[32mRun as root user\e[32m"
+  echo -n -e "\e[32mRun as root user\e[32m"
   exit 2
 fi
 
@@ -13,8 +13,8 @@ rm -f $log
 
 status_check(){
   if [ $1 -eq 0 ]; then
-    echo -e "\e[32mDone\e[0m"
+    echo -n -e "\e[32mDone\e[0m"
   else
-    echo -e "\e[32mError had encountered check log file: $log for more details\e[0m"
+    echo -n -e "\e[32mError had encountered check log file: $log for more details\e[0m"
   fi
 }

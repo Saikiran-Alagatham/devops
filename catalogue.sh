@@ -31,7 +31,7 @@ chown roboshop:roboshop /home/roboshop -R &>>$log
 status_check $?
 
 printf "Setting up SystemD file"
-sed - i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" /home/roboshop/catalogue/systemd.service && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$log
+sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" /home/roboshop/catalogue/systemd.service && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$log
 status_check $?
 
 printf "Starting the catalogue Service"

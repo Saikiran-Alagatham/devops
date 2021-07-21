@@ -19,7 +19,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/cat
 status_check $?
 
 printf "Extracting downloaded Code"
-cd /home/roboshop && unzip /tmp/catalogue.zip &>>$log && rm -rf catalogue &>>$log && mv catalogue-main catalogue &>>$log
+cd /home/roboshop && unzip -o /tmp/catalogue.zip &>>$log && rm -rf catalogue &>>$log && mv catalogue-main catalogue &>>$log
 status_check $?
 
 printf "Installing NodeJs dependencies"
@@ -31,7 +31,7 @@ chown roboshop:roboshop /home/roboshop -R &>>$log
 status_check $?
 
 printf "Setting up SystemD file"
-sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" /home/roboshop/catalogue/systemd.service && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$log
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$log
 status_check $?
 
 printf "Starting the catalogue Service"
